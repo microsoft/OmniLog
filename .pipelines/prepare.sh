@@ -47,6 +47,7 @@ sudo apt install -y \
 	netcat \
 	ninja-build \
 	python3-cryptography \
+	python3-pycryptodome \
 	python3-pip \
 	python3-pyelftools \
 	python3-serial \
