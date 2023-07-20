@@ -32,9 +32,9 @@ jobs:
         languages: ${{ matrix.language }}
         
     - run: |
-      .pipelines/prepare.sh
-      .pipelines/build-imx-atf.sh
-      .pipelines/build-imx-optee-os.sh
+        .pipelines/prepare.sh
+        .pipelines/build-imx-atf.sh
+        .pipelines/build-imx-optee-os.sh
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
