@@ -8,6 +8,8 @@ OmiLog is ...
 Please refer to [our paper](https://www.microsoft.com/en-us/research/publication/rethinking-system-audit-architectures-for-high-event-coverage-and-synchronous-log-availability/) for all technical details.
 
 ## Repository organization
+1. [imx-atf](./imx-atf) contains modified TrustedFirmware-A (TF-A). It is based on https://github.com/nxp-imx/imx-atf/tree/78347b8214a575af7285ed4861e357f393da96b1
+1. [imx-optee-os](./imx-optee-os) contains modified OP-TEE Trusted OS. It is based on https://github.com/nxp-imx/imx-optee-os/tree/imx_5.4.70_2.3.0
 ...
 
 ## Contributing
