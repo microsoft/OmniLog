@@ -1,14 +1,14 @@
-# Project
+# OmniLog: Rethinking System Audit Architectures for High Event Coverage and Synchronous Log Availability
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+This repository contains an early-stage prototype for OmniLog,
+which will be presented at [USENIX Security Symposium (USENIX Security) 2023](https://www.usenix.org/conference/usenixsecurity23/)
 
-As the maintainer of this project, please make a few updates:
+OmiLog is ...
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+Please refer to [our paper](https://www.microsoft.com/en-us/research/publication/rethinking-system-audit-architectures-for-high-event-coverage-and-synchronous-log-availability/) for all technical details.
+
+## Repository organization
+...
 
 ## Contributing
 
