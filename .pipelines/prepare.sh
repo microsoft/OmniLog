@@ -14,3 +14,5 @@ sudo apt install -y \
 	gcc-aarch64-linux-gnu \
 	gcc-arm-linux-gnueabihf \
 	binutils-aarch64-linux-gnu
+
+pip3 install pycryptodomex
