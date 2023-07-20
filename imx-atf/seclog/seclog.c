@@ -399,7 +399,7 @@ int seclog_delete_handler(uint32_t smc_fid, u_register_t x1,
 	return ret;
 }
 
-void seclog_finalize(char *msg)
+void seclog_finalize()
 {
 	char *buf;
 	int i, j;
