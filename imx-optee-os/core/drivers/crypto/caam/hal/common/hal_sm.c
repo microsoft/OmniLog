@@ -62,7 +62,7 @@ size_t caam_hal_sm_get_pages_size(vaddr_t jr_base, unsigned int page)
 	pgsize = GET_SMVID_LS_PSIZ(io_caam_read32(jr_base + SMVID_LS));
 
 	/* The number of bytes in a Secure Memory page is 2^pgsize KB */
-	return (0x1 << (pgsize + 10)) * page;
+	return ((size_t)0x1 << (pgsize + 10)) * page;
 }
 
 unsigned int caam_hal_sm_is_prtn_free(vaddr_t jr_base, unsigned int partition)
