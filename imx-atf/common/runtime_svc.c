@@ -105,7 +105,7 @@ void __init runtime_svc_init(void)
 	(void)memset(rt_svc_descs_indices, -1, sizeof(rt_svc_descs_indices));
 
 	rt_svc_descs = (rt_svc_desc_t *) RT_SVC_DESCS_START;
-	for (index = 0U; index < RT_SVC_DECS_NUM; index++) {
+	for (index = 0U; index < (uint8_t)RT_SVC_DECS_NUM; index++) {
 		rt_svc_desc_t *service = &rt_svc_descs[index];
 
 		/*

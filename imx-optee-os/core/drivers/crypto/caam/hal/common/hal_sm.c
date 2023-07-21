@@ -57,7 +57,7 @@ caam_hal_sm_check_page_partition(vaddr_t jr_base,
 
 size_t caam_hal_sm_get_pages_size(vaddr_t jr_base, unsigned int page)
 {
-	unsigned int pgsize = 0;
+	size_t pgsize = 0;
 
 	pgsize = GET_SMVID_LS_PSIZ(io_caam_read32(jr_base + SMVID_LS));
 
