@@ -1,0 +1,46 @@
+authors:
+  - family-names: Gandhi
+    given-names:  Varun
+    affiliation:  "Harvard University"
+  - family-names: Banerjee 
+    given-names:  Sarbartha
+    affiliation:  "University of Texas at Austin"
+  - family-names: Agrawal
+    given-names:  Aniket
+    affiliation:  "Arizona State University"
+  - family-names: Ahmad
+    given-names:  Adil
+    affiliation:  "Arizona State University"
+  - family-names: Lee
+    given-names:  Sangho 
+    affiliation:  "Microsoft Research"
+  - family-names: Peinado 
+    given-names:  Marcus
+    affiliation:  "Microsoft Research"
+cff-version: 1.2.0
+message: "If you use this software, please cite the following article."
+preferred-citation:
+  type: conference-paper
+  authors:
+    - family-names: Gandhi
+      given-names:  Varun
+      affiliation:  "Harvard University"
+    - family-names: Banerjee 
+      given-names:  Sarbartha
+      affiliation:  "University of Texas at Austin"
+    - family-names: Agrawal
+      given-names:  Aniket
+      affiliation:  "Arizona State University"
+    - family-names: Ahmad
+      given-names:  Adil
+      affiliation:  "Arizona University"
+    - family-names: Lee
+      given-names:  Sangho 
+      affiliation:  "Microsoft Research"
+    - family-names: Peinado 
+      given-names:  Marcus
+      affiliation:  "Microsoft Research"
+  title: "Rethinking System Audit Architectures for High Event Coverage and Synchronous Log Availability"
+  collection-title: "Proceedings of the 32nd USENIX Security Symposium (Security 2023)"
+  year: 2023
+  month: 8
