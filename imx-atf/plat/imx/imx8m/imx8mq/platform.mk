@@ -11,7 +11,7 @@ PLAT_INCLUDES		:=	-Iplat/imx/common/include		\
 				-Iplat/imx/imx8m/include		\
 				-Iplat/imx/imx8m/imx8mq/include 		\
 				-Idrivers/imx/usdhc 		\
-				-Iseclog
+				-Iomnilog
 
 # Include GICv3 driver files
 include drivers/arm/gic/v3/gicv3.mk
@@ -50,7 +50,7 @@ BL31_SOURCES		+=	plat/imx/common/imx8_helpers.S			\
 				drivers/delay_timer/generic_delay_timer.c	\
 				drivers/mmc/mmc.c				\
 				drivers/imx/usdhc/imx_usdhc.c 		\
-				seclog/seclog.c 		\
+				omnilog/omnilog.c 		\
 				${IMX_DRAM_SOURCES}				\
 				${IMX_GIC_SOURCES}
 

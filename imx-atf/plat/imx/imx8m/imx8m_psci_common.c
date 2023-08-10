@@ -18,7 +18,7 @@
 #include <imx8m_psci.h>
 #include <plat_imx8.h>
 
-#include <seclog.h>
+#include <omnilog.h>
 
 /*
  * below callback functions need to be override by i.mx8mq,
@@ -64,7 +64,7 @@ void imx_pwr_domain_off(const psci_power_state_t *target_state)
 	uint64_t mpidr = read_mpidr_el1();
 	unsigned int core_id = MPIDR_AFFLVL0_VAL(mpidr);
 
-	seclog_finalize();
+	omnilog_finalize();
 
 	plat_gic_cpuif_disable();
 	imx_set_cpu_pwr_off(core_id);
@@ -111,7 +111,7 @@ void imx_domain_suspend(const psci_power_state_t *target_state)
 	uint64_t mpidr = read_mpidr_el1();
 	unsigned int core_id = MPIDR_AFFLVL0_VAL(mpidr);
 
-	seclog_finalize();
+	omnilog_finalize();
 
 	if (is_local_state_off(CORE_PWR_STATE(target_state))) {
 		plat_gic_cpuif_disable();
@@ -233,7 +233,7 @@ static void __dead2 imx_wdog_restart(bool external_reset)
 
 void __dead2 imx_system_reset(void)
 {
-	seclog_finalize();
+	omnilog_finalize();
 #ifdef IMX_WDOG_B_RESET
 	imx_wdog_restart(true);
 #else
@@ -243,7 +243,7 @@ void __dead2 imx_system_reset(void)
 
 int imx_system_reset2(int is_vendor, int reset_type, u_register_t cookie)
 {
-	seclog_finalize();
+	omnilog_finalize();
 	imx_wdog_restart(false);
 
 	/*
@@ -256,7 +256,7 @@ int imx_system_reset2(int is_vendor, int reset_type, u_register_t cookie)
 
 void __dead2 imx_system_off(void)
 {
-	seclog_finalize();
+	omnilog_finalize();
 	mmio_write_32(IMX_SNVS_BASE + SNVS_LPCR, SNVS_LPCR_SRTC_ENV |
 			SNVS_LPCR_DP_EN | SNVS_LPCR_TOP | SNVS_LPCR_LPTA_EN | SNVS_LPCR_LPWUI_EN);
 

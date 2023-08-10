@@ -21,13 +21,13 @@
 #include <lib/runtime_instr.h>
 #include <plat/common/platform.h>
 #include <services/std_svc.h>
-#ifdef SECLOG_TEST
-#include <seclog.h>
+#ifdef OMNILOG_TEST
+#include <omnilog.h>
 #endif
 
-#ifdef SECLOG_TEST
-	#define SECLOG_BUF_SIZE (51200)
-	static char logbuf[SECLOG_BUF_SIZE];
+#ifdef OMNILOG_TEST
+	#define OMNILOG_BUF_SIZE (51200)
+	static char logbuf[OMNILOG_BUF_SIZE];
 #endif
 
 #if ENABLE_RUNTIME_INSTRUMENTATION
@@ -165,9 +165,9 @@ void bl31_main(void)
 	 * into BL33 as normal.
 	 */
 
-#ifdef SECLOG_TEST
+#ifdef OMNILOG_TEST
 	/* for testing. this function must be invoked by OP-TEE OS via SMC */
-	seclog_config_handler(0, (u_register_t)logbuf, SECLOG_BUF_SIZE, 0);
+	omnilog_config_handler(0, (u_register_t)logbuf, OMNILOG_BUF_SIZE, 0);
 #endif
 
 	/*

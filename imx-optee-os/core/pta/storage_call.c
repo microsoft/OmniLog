@@ -45,7 +45,7 @@ static TEE_Result config_buf(uint32_t param_types,
 	buffer = malloc(size* sizeof(char));
 
 	//DMSG("Buffer size is %ld",size);
-	// --- SMC Call to seclog_config_handler
+	// --- SMC Call to omnilog_config_handler
 	thread_smc(0xC2000010, buffer, size, 0);
 	
 	return TEE_SUCCESS;
