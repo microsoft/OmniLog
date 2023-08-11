@@ -8,7 +8,7 @@
     "release": "standard-version -i docs/change-log.md"
   },
   "devDependencies": {
-    "@commitlint/cli": "^14.1.0",
+    "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^14.1.0",
     "commitizen": "^4.3.0",
     "conventional-changelog-tf-a": "file:tools/conventional-changelog-tf-a",
