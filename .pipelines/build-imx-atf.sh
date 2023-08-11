@@ -5,8 +5,10 @@
 set -x
 set -e
 
+pushd arm
 pushd imx-atf ${BASE_KERNEL}
 
 CROSS_COMPILE=aarch64-linux-gnu- make -j$(nproc) PLAT=imx8mq LOG_LEVEL=40 SPD=opteed bl31
 
+popd
 popd
