@@ -460,6 +460,11 @@ ifeq ($(CFG_ARM64_core),y)
 # Enable FDT Overlay for i.MX8 SoC
 CFG_DT ?= y
 CFG_EXTERNAL_DTB_OVERLAY = y
+
+CFG_TZDRAM_SIZE ?= 0x01c00000	#28MB
+CFG_SHMEM_SIZE ?= 0x00400000
+#CFG_TEE_RAM_VA_SIZE := 0x1000000 # 16 MB
+
 #few special case to handle
 ifneq (,$(filter y, $(CFG_MX8MN) $(CFG_MX8MP) $(CFG_MX8DX) $(CFG_MX8DXL)))
 # New device will have base addresses within the first 1GB of DDR
@@ -467,16 +472,14 @@ CFG_TZDRAM_START ?= ($(CFG_DRAM_BASE) + 0x16000000)
 else
 # for backward compatibility all the other will keep existing location at the end of DDR.
 # put optee end of ddr for AARCH64
-CFG_TZDRAM_START ?= ($(CFG_DRAM_BASE) - 0x02000000 + $(CFG_DDR_SIZE))
+CFG_TZDRAM_START ?= ($(CFG_DRAM_BASE) - ($(CFG_TZDRAM_SIZE)+$(CFG_SHMEM_SIZE)) + $(CFG_DDR_SIZE))
 endif
 else
 # put optee at DDR base address + 64MB for AARCH32
 CFG_TZDRAM_START ?= ($(CFG_DRAM_BASE) + 0x04000000)
 endif
 
-CFG_TZDRAM_SIZE ?= 0x01c00000
 CFG_SHMEM_START ?= ($(CFG_TZDRAM_START) + $(CFG_TZDRAM_SIZE))
-CFG_SHMEM_SIZE ?= 0x00400000
 
 ifneq (,$(filter y, $(CFG_MX8MM) $(CFG_MX8MN) $(CFG_MX8MP) $(CFG_MX8MQ)))
 CFG_IMX_TZC_NSEC_START ?= 0x0
@@ -489,7 +492,8 @@ CFG_IMX_TZC_SHMEM_START ?= $(CFG_SHMEM_START)
 endif
 
 # Set default heap size for imx platforms to 128k
-CFG_CORE_HEAP_SIZE ?= 131072
+#CFG_CORE_HEAP_SIZE ?= 131072
+CFG_CORE_HEAP_SIZE ?= 1048576
 
 CFG_CRYPTO_SIZE_OPTIMIZATION ?= n
 CFG_MMAP_REGIONS ?= 24

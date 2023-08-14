@@ -489,6 +489,8 @@ $(eval $(call cfg-depends-all,CFG_SECSTOR_TA_MGMT_PTA,CFG_SECSTOR_TA))
 # GlobalPlatform Core API (for example, re-seeding RNG entropy pool etc.)
 CFG_SYSTEM_PTA ?= y
 
+CFG_STORAGE_PTA ?= y
+
 # Enable the pseudo TA for enumeration of TEE based devices for the normal
 # world OS.
 CFG_DEVICE_ENUM_PTA ?= y
