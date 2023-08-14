@@ -9,7 +9,9 @@ include lib/xlat_tables_v2/xlat_tables.mk
 
 PLAT_INCLUDES		:=	-Iplat/imx/common/include		\
 				-Iplat/imx/imx8m/include		\
-				-Iplat/imx/imx8m/imx8mq/include
+				-Iplat/imx/imx8m/imx8mq/include 		\
+				-Idrivers/imx/usdhc 		\
+				-Iomnilog
 
 # Include GICv3 driver files
 include drivers/arm/gic/v3/gicv3.mk
@@ -46,6 +48,9 @@ BL31_SOURCES		+=	plat/imx/common/imx8_helpers.S			\
 				drivers/arm/tzc/tzc380.c			\
 				drivers/delay_timer/delay_timer.c		\
 				drivers/delay_timer/generic_delay_timer.c	\
+				drivers/mmc/mmc.c				\
+				drivers/imx/usdhc/imx_usdhc.c 		\
+				omnilog/omnilog.c 		\
 				${IMX_DRAM_SOURCES}				\
 				${IMX_GIC_SOURCES}
 
@@ -66,7 +71,7 @@ ifneq (${IMX_ANDROID_BUILD},true)
 $(eval $(call add_define,IMX8M_DDR4_DVFS))
 endif
 
-USE_COHERENT_MEM	:=	1
+USE_COHERENT_MEM	:=	0
 RESET_TO_BL31		:=	1
 A53_DISABLE_NON_TEMPORAL_HINT := 0
 WARMBOOT_ENABLE_DCACHE_EARLY	:=	1

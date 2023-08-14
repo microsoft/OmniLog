@@ -32,7 +32,7 @@
 #define PLAT_WAIT_OFF_STATE		U(2)
 #define PLAT_STOP_OFF_STATE		U(3)
 
-#define BL31_BASE			U(0x910000)
+#define BL31_BASE			U(0x900000)
 #define BL31_LIMIT			U(0x920000)
 
 /* non-secure uboot base */
@@ -156,7 +156,7 @@
 #define CNTFID1_OFF			U(0x24)
 #define COUNTER_FREQUENCY		8000000 /* 8MHz */
 
-#define DEBUG_CONSOLE			0
+#define DEBUG_CONSOLE			1
 
 #ifdef IMX_ANDROID_BUILD
 #if !DEBUG_CONSOLE

@@ -21,6 +21,14 @@
 #include <lib/runtime_instr.h>
 #include <plat/common/platform.h>
 #include <services/std_svc.h>
+#ifdef OMNILOG_TEST
+#include <omnilog.h>
+#endif
+
+#ifdef OMNILOG_TEST
+	#define OMNILOG_BUF_SIZE (51200)
+	static char logbuf[OMNILOG_BUF_SIZE];
+#endif
 
 #if ENABLE_RUNTIME_INSTRUMENTATION
 PMF_REGISTER_SERVICE_SMC(rt_instr_svc, PMF_RT_INSTR_SVC_ID,
@@ -156,6 +164,11 @@ void bl31_main(void)
 	 * returned back to bl31_main. Once this is done we can prepare entry
 	 * into BL33 as normal.
 	 */
+
+#ifdef OMNILOG_TEST
+	/* for testing. this function must be invoked by OP-TEE OS via SMC */
+	omnilog_config_handler(0, (u_register_t)logbuf, OMNILOG_BUF_SIZE, 0);
+#endif
 
 	/*
 	 * If SPD had registered an init hook, invoke it.

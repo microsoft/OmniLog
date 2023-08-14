@@ -11,6 +11,7 @@
 #include <tools_share/uuid.h>
 #include <imx_sip_svc.h>
 #include <drivers/scmi-msg.h>
+#include <omnilog.h>
 
 static int32_t imx_sip_setup(void)
 {
@@ -59,6 +60,21 @@ static uintptr_t imx_sip_handler(unsigned int smc_fid,
 		break;
 	case IMX_SIP_NOC:
 		SMC_RET1(handle, imx_noc_handler(smc_fid, x1, x2, x3));
+		break;
+	case OMNILOG_CONFIG:
+		SMC_RET1(handle, omnilog_config_handler(smc_fid, x1, x2, x3));
+		break;
+	case OMNILOG_LOG:
+		SMC_RET1(handle, omnilog_log_handler(smc_fid, x1, x2, x3));
+		break;
+	case OMNILOG_STORE:
+		SMC_RET1(handle, omnilog_store_handler(smc_fid, x1, x2, x3));
+		break;
+	case OMNILOG_READ:
+		SMC_RET1(handle, omnilog_read_handler(smc_fid, x1, x2, x3));
+		break;
+	case OMNILOG_DELETE:
+		SMC_RET1(handle, omnilog_delete_handler(smc_fid, x1, x2, x3));
 		break;
 #endif
 #if defined(PLAT_imx8mm) || defined(PLAT_imx8mn) || defined(PLAT_imx8mp)

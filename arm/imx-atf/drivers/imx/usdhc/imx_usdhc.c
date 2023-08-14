@@ -34,6 +34,7 @@ static const struct mmc_ops imx_usdhc_ops = {
 };
 
 static imx_usdhc_params_t imx_usdhc_params;
+static struct mmc_device_info mmc_info;
 
 #define IMX7_MMC_SRC_CLK_RATE (200 * 1000 * 1000)
 static void imx_usdhc_set_clk(int clk)
@@ -138,9 +139,15 @@ static int imx_usdhc_send_cmd(struct mmc_cmd *cmd)
 		multiple = 1;
 		/* fall thru for read op */
 	case MMC_CMD(17):
-	case MMC_CMD(8):
 		mixctl |= MIXCTRL_DTDSEL;
 		data = 1;
+		break;
+	case MMC_CMD(8):
+		if (mmc_info.mmc_dev_type == MMC_IS_EMMC) {
+		/* eMMC only. SD Card doesn't expect data for CMD8 */
+			mixctl |= MIXCTRL_DTDSEL;
+			data = 1;
+		}
 		break;
 	case MMC_CMD(25):
 		multiple = 1;
@@ -297,6 +304,7 @@ void imx_usdhc_init(imx_usdhc_params_t *params,
 		(params->bus_width == MMC_BUS_WIDTH_8)));
 
 	memcpy(&imx_usdhc_params, params, sizeof(imx_usdhc_params_t));
+	memcpy(&mmc_info, mmc_dev_info, sizeof(struct mmc_device_info));
 	mmc_init(&imx_usdhc_ops, params->clk_rate, params->bus_width,
 		 params->flags, mmc_dev_info);
 }

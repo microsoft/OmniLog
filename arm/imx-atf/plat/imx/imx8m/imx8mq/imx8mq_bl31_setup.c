@@ -66,6 +66,25 @@ static entry_point_info_t bl33_image_ep_info;
 static void csu_rdc_test(void);
 #endif
 
+// TODO: refine CSU/RDC setup
+static const struct imx_csu_cfg csu_cfg[] = {
+	/* CSU_CSLx(CSU_CSL_USDHC1, CSU_SEC_LEVEL_4, LOCKED), */ /* eMMC */
+	CSU_CSLx(CSU_CSL_USDHC2, CSU_SEC_LEVEL_4, LOCKED), /* SD Card */
+	CSU_CSLx(CSU_CSL_RDC, CSU_SEC_LEVEL_4, LOCKED),
+	CSU_CSLx(CSU_CSL_CSU, CSU_SEC_LEVEL_4, LOCKED),
+	{0}
+};
+
+static const struct imx_rdc_cfg rdc_cfg[] = {
+	{0},
+};
+
+static void csu_rdc_setup()
+{
+	imx_csu_init(csu_cfg);
+	imx_rdc_init(rdc_cfg);
+}
+
 static uint32_t imx_soc_revision;
 
 int imx_soc_info_handler(uint32_t smc_fid, u_register_t x1, u_register_t x2,
@@ -140,6 +159,10 @@ static void bl31_tzc380_setup(void)
 	 */
 	tzc380_configure_region(0, 0x00000000, TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_4G) |
 				TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_ALL);
+
+	// TODO: configure secure would memory here (or within OP-TEE OS)
+	// tzc380_configure_region(1, 0xA0000000, TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_256M) |
+	//		TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_S_RW);
 }
 
 void bl31_early_platform_setup2(u_register_t arg0, u_register_t arg1,
@@ -196,6 +219,8 @@ void bl31_early_platform_setup2(u_register_t arg0, u_register_t arg1,
 #endif
 
 	bl31_tzc380_setup();
+
+	csu_rdc_setup();
 
 #if defined (CSU_RDC_TEST)
 	csu_rdc_test();
